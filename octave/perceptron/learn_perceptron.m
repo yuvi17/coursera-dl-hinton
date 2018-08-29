@@ -110,6 +110,7 @@ for i=1:num_neg_examples
     this_case = neg_examples(i,:);
     x = this_case'; %Hint
     activation = x'*w;
+    % explanation w = w + (0-1)*x (0 is expected answer, 1 is actual)
     if (activation >= 0)
         % for incorrectly classified positive cases, decrement weights
         w = w - x;
@@ -119,6 +120,7 @@ for i=1:num_pos_examples
     this_case = pos_examples(i,:);
     x = this_case';
     activation = x'*w;
+    % explanation w = w + (1-0)*x (1 is expected answer, 1 is actual)
     if (activation < 0)
         % for incorrectly classified negative cases, increment weights
         w = w + x
